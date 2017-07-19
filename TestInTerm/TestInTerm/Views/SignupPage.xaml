@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestInTerm.SignupPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="20,0,20,0"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="40,10,40,10"/>
+                <Setter Property="PlaceholderColor" Value="White"/>
+            </Style>
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    <Grid>
+        <Image Source="bg.jpg"
+               Aspect="AspectFill"/>
+        <ScrollView>
+            <StackLayout>
+                <Image Source="logo.png" 
+                       Aspect="Fill"
+                       WidthRequest="250"
+                       HeightRequest="70"
+                       Margin="0,30,0,30"
+                       
+                       HorizontalOptions="Center"/>
+                <Label Text="Register now"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                />
+                <Label Text="Register now and enjoy"/>
+                <Label Text="the pleasure of the demo"/>
+                <BoxView Color="White" HeightRequest="3" Margin="20,0,20,30" WidthRequest="50" HorizontalOptions="Start" />
+
+
+                <Entry x:Name="username" Placeholder="Username" />
+                <Entry x:Name="password" Placeholder="Password" />
+                <Entry x:Name="email" Placeholder="Email" />
+                <Entry x:Name="phone" Placeholder="Phone" />
+                <Entry x:Name="adrress" Placeholder="Address" />
+                <Button Text="SIGN UP" Style="{StaticResource btnSignUp}"
+                        Clicked="Move_LoginPage"/>
+            </StackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestInTerm.LoginPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="20,0,20,0"/>
+
+            </Style>
+            <Style x:Key="LoginPage" TargetType="Entry">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="40,20,40,20"/>
+                <Setter Property="PlaceholderColor" Value="White"/>
+            </Style>
+
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    <Grid>
+        <Image Source="bg.jpg"
+               Aspect="AspectFill"/>
+        <ScrollView>
+            <StackLayout >
+                <Image Source="logo.png" 
+                       Aspect="Fill"
+                       WidthRequest="250"
+                       HeightRequest="70"
+                       Margin="0,30,0,30"
+                       
+                       HorizontalOptions="Center"/>
+                <Label Text="Login or register using"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                />
+                <Label Text="your username and password."
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       Margin="20,0,0,20"
+                />
+                <Label Text="Login or register using"/>
+                <Label Text="your username and password."/>
+                <BoxView Color="White" HeightRequest="3" Margin="20,0,20,30" WidthRequest="50" HorizontalOptions="Start" />
+
+                <Entry Placeholder="Username" Style="{StaticResource LoginPage}" />
+                <Entry Placeholder="Password" Style="{StaticResource LoginPage}" />
+
+                <Button VerticalOptions="EndAndExpand" 
+                        Text="Login" Style="{StaticResource btnSignUp}"
+                        Clicked="Move_HomePage"/>
+                <StackLayout Orientation="Horizontal" 
+                             Margin="5,0,5,20">
+                    <Label Text="Forgot password?">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Move_ForgotPass"  NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="New here? Sign up" HorizontalOptions="EndAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Move_SignUp" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

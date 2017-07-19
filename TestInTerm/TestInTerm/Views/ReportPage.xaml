@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:testInTerm="clr-namespace:TestInTerm;assembly=TestInTerm"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             x:Class="TestInTerm.ReportPage"
+             Title="Report">
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="bg1.jpg"
+                   Aspect="AspectFill"/>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Number of Tasks done: " />
+                    <Label x:Name="NumTaskDone"
+                       HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Number of Tasks inprogress: " />
+                    <Label x:Name="NumTaskInprogress"
+                       HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Select: " />
+                    <Picker x:Name="SelectTimePicker"
+                        SelectedIndexChanged="SelectTimePicker_OnSelectedIndexChanged"
+                        TextColor="Blue"               
+                        Title="Select Priority" 
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="Center"
+                        
+                        >
+                        <Picker.Items>
+                            <x:String>Today</x:String>
+                            <x:String>This Week</x:String>
+                            <x:String>This Month</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Complete process: " />
+                    <Label x:Name="CompleteProcess"
+                       HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <chart:SfChart VerticalOptions="FillAndExpand">
+                    <!-- Chart Title -->
+
+
+                    <!-- Binding Data -->
+                    <chart:SfChart.Series>
+                        <chart:DoughnutSeries x:Name="lstChart"
+                                        ItemsSource="{Binding Data}"
+                                      XBindingPath="Name"
+                                      YBindingPath="Value">
+                            <chart:DoughnutSeries.DataMarker>
+                                <chart:ChartDataMarker/>
+                            </chart:DoughnutSeries.DataMarker>
+                            <chart:DoughnutSeries.ColorModel>
+                                <chart:ChartColorModel x:Name="lstChartColor" Palette="Custom"
+                                               CustomBrushes="{Binding DataColor}"/>
+                            </chart:DoughnutSeries.ColorModel>
+                        </chart:DoughnutSeries>
+                    </chart:SfChart.Series>
+
+                    <!-- Note -->
+                    <chart:SfChart.Legend>
+                        <chart:ChartLegend/>
+                    </chart:SfChart.Legend>
+
+                </chart:SfChart>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

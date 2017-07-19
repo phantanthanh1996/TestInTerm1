@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestInTerm.HomePageMaster"
+             Title="Master">
+    <StackLayout>
+        <ListView x:Name="MenuItemsListView"
+              SeparatorVisibility="None"
+              HasUnevenRows="true"
+              ItemsSource="{Binding MenuItems}">
+            <ListView.Header>
+                <Grid BackgroundColor="Black">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="logo.png"
+                 HorizontalOptions="Center"
+                 Grid.Column="1"
+                 Grid.Row="1"/>
+                    <Label Text="BaoBD" 
+                 TextColor="White"
+                 HorizontalOptions="Center" 
+                 Grid.Column="1"
+                 Grid.Row="2"></Label>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding url}"
+                                       WidthRequest="40"
+                                       HeightRequest="40"/>
+                                <Label VerticalOptions="FillAndExpand" 
+                                       VerticalTextAlignment="Center" 
+                                       Text="{Binding Title}" 
+                                       FontSize="24"/>
+
+                            </StackLayout>
+
+                            <BoxView HeightRequest="1" Color="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout VerticalOptions="EndAndExpand">
+            <Label Text="Make by ThanhPT"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

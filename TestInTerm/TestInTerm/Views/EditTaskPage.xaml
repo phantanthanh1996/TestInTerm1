@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestInTerm.EditTaskPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Blue" />
+                <Setter Property="Margin" Value="0,10"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+            <LayoutOptions x:Key="detail">
+                EndAndExpand
+            </LayoutOptions>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="save.png" Clicked="Save_Task"/>
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <Image Source="bg1.jpg"
+               Aspect="AspectFill"/>
+        <ScrollView>
+            <Grid Margin="20,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                    Text="Task Name: "/>
+                <Entry  Grid.Row="0"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        x:Name="taskname" 
+                        Text="{Binding TaskName}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                <Label  Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Time Start: "/>
+                <DatePicker  Grid.Row="1"
+                             Grid.Column="1"
+                             Date="{Binding TimeStart}"
+                             HorizontalOptions="{StaticResource detail}"
+                             x:Name="datestart" 
+                             TextColor="Blue" />
+                <TimePicker  Grid.Row="1"
+                             Grid.Column="2"
+                             x:Name="timestart" 
+                             TextColor="Blue" 
+                             HorizontalOptions="{StaticResource detail}"/>
+
+                <Label  Grid.Row="2"
+                        Grid.Column="0"
+                        Text="Deadline: "/>
+                <DatePicker Grid.Row="2"
+                            Grid.Column="1"
+                            Date="{Binding Deadline}"
+                            HorizontalOptions="{StaticResource detail}"
+                            x:Name="datedead" 
+                            TextColor="Blue" />
+                <TimePicker Grid.Row="2"
+                            Grid.Column="2"
+                            x:Name="timedead" 
+                            TextColor="Blue"
+                            HorizontalOptions="{StaticResource detail}"/>
+
+
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Text="Des-Short: "/>
+                <Entry Grid.Row="3"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       x:Name="desshort" 
+                       Text="{Binding DesShort}"
+                       HorizontalOptions="FillAndExpand"/>
+
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Text="Description: "/>
+                <Editor Grid.Row="5"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        x:Name="description" 
+                        TextColor="Blue"
+                        Text="{Binding Description}"
+                        HeightRequest="60"
+                        HorizontalOptions="FillAndExpand">
+                </Editor>
+                <Label Grid.Row="6"
+                       Grid.Column="0"
+                       Text="Priority: "/>
+                <Picker x:Name="PiorityPicker"
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        SelectedItem="{Binding Priority}"
+                        TextColor="Blue"               
+                        Title="Select Priority" 
+                        HorizontalOptions="EndAndExpand">
+                    <Picker.Items>
+                        <x:String>1</x:String>
+                        <x:String>2</x:String>
+                        <x:String>3</x:String>
+                        <x:String>4</x:String>
+                    </Picker.Items>
+                </Picker>
+
+
+
+
+
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

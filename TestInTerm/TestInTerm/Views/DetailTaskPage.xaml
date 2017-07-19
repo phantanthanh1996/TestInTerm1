@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestInTerm.DetailTaskPage"
+             xmlns:converters="clr-namespace:TestInTerm">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Blue" />
+                <Setter Property="Margin" Value="0,10" />
+                <Setter Property="FontSize" Value="15" />
+            </Style>
+            <LayoutOptions x:Key="detail">
+                EndAndExpand
+            </LayoutOptions>
+            <converters:BoolToUrlConverter x:Key="BoolToUrlConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="edit.png" Clicked="Edit_Task" />
+        <ToolbarItem Icon="delete.png" Clicked="Delete_Task" />
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <Image Source="bg1.jpg"
+               Aspect="AspectFill" />
+        <ScrollView>
+            <Grid Margin="20,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       Text="Task Name: " />
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding TaskName}"
+                       HorizontalOptions="{StaticResource detail}" />
+
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Time Start: " />
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       x:Name="timestart"
+                       TextColor="Blue"
+                       HorizontalOptions="{StaticResource detail}" />
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Text="Deadline: " />
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       x:Name="deadline"
+                       TextColor="Blue"
+
+                       HorizontalOptions="{StaticResource detail}" />
+
+
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Text="Des-Short: " />
+                <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       x:Name="desshort"
+                       Text="{Binding DesShort}"
+                       HorizontalOptions="{StaticResource detail}" />
+
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Text="Description: " />
+                <Label Grid.Row="5"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Text="{Binding Description}"
+                       x:Name="description"
+                       TextColor="Blue"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="Center">
+                </Label>
+                <BoxView Grid.Row="5"
+                         Grid.Column="0" 
+                         Grid.ColumnSpan="3"
+                         HeightRequest="2" 
+                         Color="Black" 
+                         VerticalOptions="EndAndExpand"/>
+                <Label Grid.Row="6"
+                       Grid.Column="0"
+                       Text="Priority: " />
+                <Label x:Name="piority"
+                       Grid.Row="6"
+                       Text="{Binding Priority}"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       HorizontalOptions="EndAndExpand">
+                </Label>
+                <Label Grid.Row="7"
+                       Grid.Column="0"
+                       Text="Status: " />
+                <Label Grid.Row="7"
+                       Grid.Column="1"
+                       x:Name="status">
+
+                </Label>
+                <Image x:Name="statuschange"
+                       HeightRequest="35"
+                       WidthRequest="35"
+                       Source="{Binding Status, Converter= {StaticResource BoolToUrlConverter}}"
+                       VerticalOptions="StartAndExpand"
+                       HorizontalOptions="EndAndExpand"
+                       Margin="10,10"
+                       Grid.Row="7"
+                       Grid.Column="2"
+                >
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+
+
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

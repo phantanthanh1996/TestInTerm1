@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestInTerm.App">
+    <Application.Resources>
+
+        <!-- Application resource dictionary -->
+        <ResourceDictionary>
+
+            <Style x:Key="btnSignUp" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="20,10,20,40"/>
+                <Setter Property="BackgroundColor" Value="Aqua"/>
+            </Style>
+            <Style x:Key="btnFacebook" TargetType="Button">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="Margin" Value="20,-30,20,20"/>
+                <Setter Property="BackgroundColor" Value="#87CEFA"/>
+
+            </Style>
+            <Style  x:Key="SetIcon" TargetType="Image">
+                <Setter Property="Margin" Value="20,10"/>
+                <Setter Property="WidthRequest" Value="50"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Aspect" Value="Fill"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

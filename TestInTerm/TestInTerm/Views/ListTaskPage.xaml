@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestInTerm.ListTaskPage"
+             Title="List Task"
+             xmlns:converters="clr-namespace:TestInTerm"
+             xmlns:converters1="clr-namespace:TestInTerm">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="add.png" Clicked="Add_Task" />
+        <ToolbarItem Icon="upload.png" Clicked="Upload_To_Server" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters1:StringToColorConverter x:Key="StringToColorConverter" />
+            <converters1:CutStringConverter x:Key="CutStringConverter"/>
+            <converters1:BoolToUrlConverter x:Key="BoolToUrlConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <Image Source="bg1.jpg"
+               Aspect="AspectFill"/>
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <SearchBar Grid.Column="0"
+                       x:Name="Search" 
+                       Placeholder="Search task"
+                       TextChanged="Search_TaskName"/>
+                <Picker Grid.Column="1"
+                    x:Name="SearchPicker"           
+                    Title="Search Type ">
+                    <Picker.Items>
+                        <x:String>TaskName</x:String>
+                        <x:String>Des-Short</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Grid>
+
+
+            <ListView x:Name="lstTask" HasUnevenRows="True" ItemTapped="LstTask_OnItemTapped" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <StackLayout Orientation="Horizontal" BackgroundColor="Aqua" Margin="10,10">
+
+                                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Margin="5,5"
+                                         Padding="5,5,5,5">
+                                    <Label Text="{Binding TaskName}" FontSize="Medium" />
+                                    <Label Text="{Binding DesShort}" FontSize="Medium" />
+
+                                    <StackLayout VerticalOptions="EndAndExpand"
+                                             Orientation="Horizontal">
+                                        <Label Text="Time Deadline: " 
+                                           FontSize="Medium"/>
+                                        <Label Text="{Binding TimeDeadline}" 
+                                           FontSize="Medium" />
+                                    </StackLayout>
+
+
+                                </StackLayout>
+                                <StackLayout>
+                                    <!--Hien thi chu cai dau-->
+                                    <Grid>
+                                        <BoxView
+                                        Margin="10,10"
+                                        Color="{Binding Priority, Converter= {StaticResource StringToColorConverter}}"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        VerticalOptions="Start">
+                                        </BoxView>
+                                        <Label Text="{Binding Priority, Converter= {StaticResource CutStringConverter}}"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"
+                                           FontSize="20"/>
+
+
+                                    </Grid>
+                                    <Image x:Name="statuschange"
+                                       Source="{Binding Status, Converter= {StaticResource BoolToUrlConverter}}"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="End"
+                                       HeightRequest="50"
+                                       WidthRequest="50"
+                                       Margin="10,10" >
+
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                </StackLayout>
+
+
+                            </StackLayout>
+
+                            <ViewCell.ContextActions>
+                                <MenuItem Icon="edit.png"
+                                      Clicked="Edit_Task" />
+                                <MenuItem Icon="delete.png"
+                                      Clicked="Delete_Task" />
+                            </ViewCell.ContextActions>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Picker Grid.Column="0"
+                    x:Name="Filter"           
+                    Title="Filter Type" 
+                    SelectedIndexChanged="FilterPicker_OnSelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>Priority this Date</x:String>
+                        <x:String>Priority this Week</x:String>
+                        <x:String>Priority this Month</x:String>
+                        <x:String>Status this Date</x:String>
+                        <x:String>Status this Week</x:String>
+                        <x:String>Status this Month</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Picker Grid.Column="1"
+                    x:Name="Sort"           
+                    Title="Sort Type" 
+                    SelectedIndexChanged="SortPicker_OnSelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>Deadline A - Z</x:String>
+                        <x:String>Deadline Z - A</x:String>
+                        <x:String>Priority 1 - 4</x:String>
+                        <x:String>Priority 4 - 1</x:String>
+                        <x:String>Status Done - Open</x:String>
+                        <x:String>Status Open - Done</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Grid>
+        </StackLayout>
+    </Grid>
+</ContentPage>
