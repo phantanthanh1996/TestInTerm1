@@ -321,6 +321,7 @@ namespace TestInTerm
 
         private void Ok_Filter(object sender, EventArgs e)
         {
+
             Navigation.PushAsync(new HomePage());
         }
     }
