@@ -70,7 +70,7 @@ namespace TestInTerm
                 Priority = rs,
             };
             App.DAUtil.SaveTask(stask);
-            Navigation.PushAsync(new ListTaskPage());
+            Navigation.PopAsync();
         }
 
     }
