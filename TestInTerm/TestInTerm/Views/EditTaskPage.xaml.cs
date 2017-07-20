@@ -69,7 +69,7 @@ namespace TestInTerm
                 Description = description.Text,
                 Priority = rs,
             };
-            App.DAUtil.SaveTask(stask);
+            App.DAUtil.EditTask(stask);
             Navigation.PopAsync();
         }
 

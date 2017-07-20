@@ -45,6 +45,7 @@
     <Compile Include="Enums\PriorityType.cs" />
     <Compile Include="Interface\ISQLite.cs" />
     <Compile Include="Models\DataAccess.cs" />
+    <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\HomePageMenuItem.cs" />
     <Compile Include="Models\PieChartModel.cs" />
     <Compile Include="Models\Task.cs" />

@@ -9,14 +9,15 @@ using Xamarin.Forms.Xaml;
 
 namespace TestInTerm
 {
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilterPage : ContentPage
     {
-        public int statusFilter;
+        public int statusFilter = 0;
         public int priorityFilter;
-        public int timeFilter;
-        public int sortPriority1;
-        public int sortDeadline1;
+        public int timeFilter = 0;
+        public int sortPriority1 = 0;
+        public int sortDeadline1 = 0;
         public FilterPage()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace TestInTerm
             {
        
                 item.Source = "checkempty.png";
-                statusFilter = 3;
+                statusFilter = 0;
 
             }
             else if (source.File == "checkempty.png")
@@ -55,7 +56,7 @@ namespace TestInTerm
             {
    
                 item.Source = "checkempty.png";
-                statusFilter = 3;
+                statusFilter = 0;
             }
             else if (source.File == "checkempty.png")
             {
@@ -77,14 +78,14 @@ namespace TestInTerm
             {
                 
                 item.Source = "checkempty.png";
-                statusFilter = 3;
+                statusFilter = 0;
             }
             else if (source.File == "checkempty.png")
             {
                 item.Source = "check.png";
                 statusDone.Source = "checkempty.png";
                 statusUndone.Source = "checkempty.png";
-                statusFilter = 3;
+                statusFilter = 0;
             }
         }
 
@@ -316,13 +317,43 @@ namespace TestInTerm
 
         private void Cancel_Filter(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new HomePage());
+            Navigation.PushAsync(HomePage.Instance);
         }
 
         private void Ok_Filter(object sender, EventArgs e)
         {
+            bool showPriority, showDeadline;
+            if (sortPriority1 == 0)
+            {
+                showPriority = false;
+            }
+            else
+            {
+                showPriority = true;
+            }
+            if (sortDeadline1 == 0)
+            {
+                showDeadline = false;
+            }
+            else
+            {
+                showDeadline = true;
+            }
+            var filter = new Filter()
+            {
 
-            Navigation.PushAsync(new HomePage());
+                StatusFilter = statusFilter,
+                PriorityFilter = priorityFilter,
+                TimeFilter = timeFilter,
+                SortPriority1 = sortPriority1,
+                ShowPriority = showPriority,
+                SortDeadline1 = sortDeadline1,
+                ShowDeadline = showDeadline
+            };
+            App.DAUtil.SaveFilter(filter);
+        Navigation.PushAsync(new HomePage());
         }
     }
 }
+
+//statusFilter,  priorityFilter,  timeFilter,  sortPriority1,  showPriority,  sortDeadline1, showDeadline

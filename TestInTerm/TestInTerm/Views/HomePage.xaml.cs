@@ -12,6 +12,18 @@ namespace TestInTerm
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : MasterDetailPage
     {
+        private static HomePage _instance;
+        public static HomePage Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new HomePage();
+                }
+                return _instance;
+            }
+        }
         public HomePage()
         {
             InitializeComponent();

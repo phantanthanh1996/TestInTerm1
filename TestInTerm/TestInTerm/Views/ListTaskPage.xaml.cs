@@ -5,9 +5,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SQLite.Net;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 
 namespace TestInTerm
 {
@@ -23,12 +24,25 @@ namespace TestInTerm
             lstTask.ItemsSource = vList;
 
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            var vList = App.DAUtil.GetAllTasks();
-            lstTask.ItemsSource = vList;
+                var Filter = App.DAUtil.GetFilter();
+            if(Filter == null)
+            {
+                var vList = App.DAUtil.GetAllTasks();
+                lstTask.ItemsSource = vList;
+            }
+            else
+            {
+                var vList = App.DAUtil.FilterAndSort(Filter.StatusFilter, Filter.PriorityFilter, Filter.TimeFilter, Filter.SortPriority1, Filter.ShowPriority, Filter.SortDeadline1, Filter.ShowDeadline);
+                lstTask.ItemsSource = vList;
+            }
+
+
+
 
         }
         public async void Add_Task(object sender, EventArgs e)
