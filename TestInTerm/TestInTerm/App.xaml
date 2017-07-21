@@ -24,6 +24,10 @@
                 <Setter Property="HeightRequest" Value="50"/>
                 <Setter Property="Aspect" Value="Fill"/>
             </Style>
+            <!--<Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="Red"/>
+                <Setter Property="BarTextColor" Value="Green"/>
+            </Style>-->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

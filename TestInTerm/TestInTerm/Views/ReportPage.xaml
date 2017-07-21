@@ -4,11 +4,12 @@
              xmlns:testInTerm="clr-namespace:TestInTerm;assembly=TestInTerm"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              x:Class="TestInTerm.ReportPage"
-             Title="Report">
+             Title="Report"
+             BackgroundColor="White">
     <ContentPage.Content>
-        <Grid>
+        <!--<Grid>
             <Image Source="bg1.jpg"
-                   Aspect="AspectFill"/>
+                   Aspect="AspectFill"/>-->
             <StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Number of Tasks done: " />
@@ -20,9 +21,11 @@
                     <Label x:Name="NumTaskInprogress"
                        HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
+            <BoxView HeightRequest="1" Color="AliceBlue"/>
+            <StackLayout Orientation="Horizontal">
                     <Label Text="Select: " />
                     <Picker x:Name="SelectTimePicker"
+                        
                         SelectedIndexChanged="SelectTimePicker_OnSelectedIndexChanged"
                         TextColor="Blue"               
                         Title="Select Priority" 
@@ -41,8 +44,34 @@
                     <Label Text="Complete process: " />
                     <Label x:Name="CompleteProcess"
                        HorizontalOptions="EndAndExpand"/>
+                    
                 </StackLayout>
-                <chart:SfChart VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Number of CristicalTasks " />
+                <Label x:Name="CristicalTasks"
+                       HorizontalOptions="EndAndExpand"/>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Number of HighTasks " />
+                <Label x:Name="HighTasks"
+                       HorizontalOptions="EndAndExpand"/>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Number of NormalTasks " />
+                <Label x:Name="NormalTasks"
+                       HorizontalOptions="EndAndExpand"/>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Number of LowTasks " />
+                <Label x:Name="LowTasks"
+                       HorizontalOptions="EndAndExpand"/>
+
+            </StackLayout>
+            <chart:SfChart BackgroundColor="White"
+                    VerticalOptions="FillAndExpand">
                     <!-- Chart Title -->
 
 
@@ -70,7 +99,7 @@
                 </chart:SfChart>
 
             </StackLayout>
-        </Grid>
+        <!--</Grid>-->
     </ContentPage.Content>
 
 </ContentPage>

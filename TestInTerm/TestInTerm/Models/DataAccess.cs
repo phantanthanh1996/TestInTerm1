@@ -63,6 +63,10 @@ namespace TestInTerm
         {
             return dbConn.Update(task);
         }
+        public int EditFilter(Filter filter)
+        {
+            return dbConn.Update(filter);
+        }
         public int CountX(bool query)
         {
 
@@ -111,10 +115,9 @@ namespace TestInTerm
             }
 
         }
-        public List<Task> FilterAndSort(int statusFilter, int priorityFilter, int timeFilter, int sortPriority1, bool showPriority, int sortDeadline1, bool showDeadline)
+        public List<Task> FilterAndSort(int statusFilter, bool priorityCristical, bool priorityHigh, bool priorityNormal, bool priorityLow, bool priorityAll, int timeFilter, int sortPriority1, bool showPriority, int sortDeadline1, bool showDeadline)
         {
             string statuscheck = "";
-            string timecheck = "";
             string prioritycheck = "";
             string sortprioritycheck = "";
             string sortdeadlinecheck = "";
@@ -125,10 +128,10 @@ namespace TestInTerm
                     statuscheck = "";
                     break;
                 case 1:
-                    statuscheck = "Status =" + true;
+                    statuscheck = "Status = 1";
                     break;
                 case 2:
-                    statuscheck = "Status =" + false;
+                    statuscheck = "Status = 0";
                     break;
             }
             //switch (timeFilter)
@@ -143,21 +146,52 @@ namespace TestInTerm
             //        timecheck = " false ";
             //        break;
             //}
-            int dem = 0;
-            for(int i=1; i < 5; i++)
+            int[] priority = new int[5];
+            if (priorityCristical == true)
             {
-
-                if(priorityFilter == i)
+                priority[1] = 1;
+            }
+            else
+            {
+                priority[1] = 6;
+            }
+            if (priorityHigh == true)
+            {
+                priority[2] = 2;
+            }
+            else
+            {
+                priority[2] = 6;
+            }
+            if (priorityNormal == true)
+            {
+                priority[3] = 3;
+            }
+            else
+            {
+                priority[3] = 6;
+            }
+            if (priorityLow == true)
+            {
+                priority[4] = 4;
+            }
+            else
+            {
+                priority[4] = 6;
+            }
+            int dem = 0;
+            for (int i = 1; i < 5; i++)
+            {
+                if (priority[i] == i)
                 {
-                    dem++; // 1
+                    dem++;
                     if (dem >= 2)
                     {
-                        prioritycheck += " and ";
+                        prioritycheck += " or ";
                     }
                     prioritycheck += "Priority = " + i;
                 }
             }
-
             //IF 
             switch (sortPriority1)
             {
@@ -178,7 +212,7 @@ namespace TestInTerm
             switch (sortDeadline1)
             {
                 case 0:
-                    sortdeadlinecheck = "Deadline asc";
+                    sortdeadlinecheck = "";
                     break;
                 case 1:
                     if (showDeadline == false)
@@ -192,17 +226,29 @@ namespace TestInTerm
                     break;
             }
             string ShowListTaskFilter = "";
-            if (prioritycheck.CompareTo("") != 0 && statuscheck.CompareTo("") != 0)
+            if (prioritycheck.CompareTo("") != 0 && statuscheck.CompareTo("") != 0 && sortdeadlinecheck.CompareTo("") != 0)
             {
-                ShowListTaskFilter = "Select * From [Task] where " + prioritycheck + " order by " + sortprioritycheck + ", " + sortdeadlinecheck;
+                ShowListTaskFilter = "Select * From [Task] where " + prioritycheck + " and " + statuscheck + " order by " + sortprioritycheck + ", " + sortdeadlinecheck;
             }
-            else if (prioritycheck.CompareTo("") != 0 || statuscheck.CompareTo("") != 0)
+            else if ((prioritycheck.CompareTo("") != 0 && statuscheck.CompareTo("") != 0) && sortdeadlinecheck.CompareTo("") == 0)
             {
-                 ShowListTaskFilter = "Select * From [Task]  order by " + sortprioritycheck + ", " + sortdeadlinecheck;
+                ShowListTaskFilter = "Select * From [Task] where " + prioritycheck + " and "  + statuscheck + " order by " + sortprioritycheck;
+            }
+            else if ((prioritycheck.CompareTo("") != 0 || statuscheck.CompareTo("") != 0) && sortdeadlinecheck.CompareTo("") != 0)
+            {
+                ShowListTaskFilter = "Select * From [Task] where " + prioritycheck + statuscheck + " order by " + sortprioritycheck + ", " + sortdeadlinecheck;
+            }
+            else if ((prioritycheck.CompareTo("") == 0 && statuscheck.CompareTo("") == 0) && sortdeadlinecheck.CompareTo("") != 0)
+            {
+                ShowListTaskFilter = "Select * From [Task] order by " + sortprioritycheck + ", " + sortdeadlinecheck;
+            }
+            else if ((prioritycheck.CompareTo("") != 0 || statuscheck.CompareTo("") != 0 )&& sortdeadlinecheck.CompareTo("") == 0)
+            {
+                ShowListTaskFilter = "Select * From [Task] where " + prioritycheck + statuscheck + " order by " + sortprioritycheck;
             }
             else
             {
-                 ShowListTaskFilter = "Select * From [Task] order by " + sortprioritycheck + ", " + sortdeadlinecheck;
+                ShowListTaskFilter = "Select * From [Task] order by " + sortprioritycheck;
             }
 
                 return dbConn.Query<Task>(ShowListTaskFilter);

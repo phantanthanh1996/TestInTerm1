@@ -14,7 +14,11 @@ namespace TestInTerm
     public partial class FilterPage : ContentPage
     {
         public int statusFilter = 0;
-        public int priorityFilter;
+        public bool priorityCristicalcheck;
+        public bool priorityHighcheck;
+        public bool priorityNormalcheck;
+        public bool priorityLowcheck;
+        public bool priorityAllcheck;
         public int timeFilter = 0;
         public int sortPriority1 = 0;
         public int sortDeadline1 = 0;
@@ -32,12 +36,12 @@ namespace TestInTerm
             var source = item.Source as FileImageSource;
             if (source.File == "check.png")
             {
-       
+
                 item.Source = "checkempty.png";
                 statusFilter = 0;
 
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
                 statusAll.Source = "checkempty.png";
@@ -54,11 +58,11 @@ namespace TestInTerm
             var source = item.Source as FileImageSource;
             if (source.File == "check.png")
             {
-   
+
                 item.Source = "checkempty.png";
                 statusFilter = 0;
             }
-            else if (source.File == "checkempty.png")
+            else
             {
 
                 item.Source = "check.png";
@@ -76,11 +80,11 @@ namespace TestInTerm
             var source = item.Source as FileImageSource;
             if (source.File == "check.png")
             {
-                
+
                 item.Source = "checkempty.png";
                 statusFilter = 0;
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
                 statusDone.Source = "checkempty.png";
@@ -97,14 +101,16 @@ namespace TestInTerm
             var source = item.Source as FileImageSource;
             if (source.File == "check.png")
             {
-             
-                item.Source = "checkempty.png";
 
+                item.Source = "checkempty.png";
+                priorityCristicalcheck = false;
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
-                priorityFilter = 1;
+                priorityCristicalcheck = true;
+                priorityAll.Source = "checkempty.png";
+
             }
         }
 
@@ -116,14 +122,15 @@ namespace TestInTerm
             var source = item.Source as FileImageSource;
             if (source.File == "check.png")
             {
-        
-                item.Source = "checkempty.png";
 
+                item.Source = "checkempty.png";
+                priorityHighcheck = false;
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
-                priorityFilter = 2;
+                priorityHighcheck = true;
+                priorityAll.Source = "checkempty.png";
             }
         }
 
@@ -135,14 +142,15 @@ namespace TestInTerm
             var source = item.Source as FileImageSource;
             if (source.File == "check.png")
             {
-       
-                item.Source = "checkempty.png";
 
+                item.Source = "checkempty.png";
+                priorityNormalcheck = false;
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
-                priorityFilter = 3;
+                priorityNormalcheck = true;
+                priorityAll.Source = "checkempty.png";
             }
         }
 
@@ -154,14 +162,15 @@ namespace TestInTerm
             var source = item.Source as FileImageSource;
             if (source.File == "check.png")
             {
-         
+                priorityLowcheck = false;
                 item.Source = "checkempty.png";
 
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
-                priorityFilter = 4;
+                priorityLowcheck = true;
+                priorityAll.Source = "checkempty.png";
             }
         }
 
@@ -173,14 +182,15 @@ namespace TestInTerm
             var source = item.Source as FileImageSource;
             if (source.File == "check.png")
             {
-       
+                priorityAllcheck = false;
                 item.Source = "checkempty.png";
 
+
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
-                priorityFilter = 0;
+                priorityAllcheck = true;
                 priorityCristical.Source = "checkempty.png";
                 priorityHigh.Source = "checkempty.png";
                 priorityNormal.Source = "checkempty.png";
@@ -196,12 +206,12 @@ namespace TestInTerm
             var source = item.Source as FileImageSource;
             if (source.File == "check.png")
             {
-  
+
                 item.Source = "checkempty.png";
                 timeFilter = 0;
 
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
                 timeThisWeek.Source = "checkempty.png";
@@ -223,7 +233,7 @@ namespace TestInTerm
                 item.Source = "checkempty.png";
                 timeFilter = 0;
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
                 timeToday.Source = "checkempty.png";
@@ -245,7 +255,7 @@ namespace TestInTerm
                 item.Source = "checkempty.png";
 
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
                 timeThisWeek.Source = "checkempty.png";
@@ -267,7 +277,7 @@ namespace TestInTerm
                 item.Source = "checkempty.png";
 
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
                 timeThisWeek.Source = "checkempty.png";
@@ -287,12 +297,13 @@ namespace TestInTerm
             {
                 sortPriority1 = 0;
                 item.Source = "checkempty.png";
-
+                pioritySort.SelectedItem = null;
             }
-            else if (source.File == "checkempty.png")
+            else
             {
                 item.Source = "check.png";
                 sortPriority1 = 1;
+                pioritySort.SelectedItem = "Increase";
             }
         }
 
@@ -306,10 +317,11 @@ namespace TestInTerm
             {
                 sortDeadline1 = 0;
                 item.Source = "checkempty.png";
-
+                DeadlineSort.SelectedItem = null;
             }
-            else if (source.File == "checkempty.png")
+            else
             {
+                DeadlineSort.SelectedItem = "Increase";
                 sortDeadline1 = 1;
                 item.Source = "check.png";
             }
@@ -317,7 +329,7 @@ namespace TestInTerm
 
         private void Cancel_Filter(object sender, EventArgs e)
         {
-            Navigation.PushAsync(HomePage.Instance);
+            Navigation.PushAsync(new HomePage());
         }
 
         private void Ok_Filter(object sender, EventArgs e)
@@ -329,31 +341,58 @@ namespace TestInTerm
             }
             else
             {
-                showPriority = true;
+
+                if (pioritySort.SelectedItem == "Increase")
+                {
+                    showPriority = false;
+                }
+                else
+                {
+                    showPriority = true;
+                }
+
             }
             if (sortDeadline1 == 0)
             {
+
                 showDeadline = false;
             }
             else
             {
-                showDeadline = true;
+                if (DeadlineSort.SelectedItem == "Increase")
+                {
+                    showDeadline = false;
+                }
+                else
+                {
+                    showDeadline = true;
+                }
+            }
+            if (priorityCristicalcheck == false &&
+                priorityHighcheck == false &&
+                priorityNormalcheck == false &&
+                priorityLowcheck == false)
+            {
+                priorityAllcheck = true;
             }
             var filter = new Filter()
             {
 
                 StatusFilter = statusFilter,
-                PriorityFilter = priorityFilter,
+                Priority_Cristical = priorityCristicalcheck,
+                Priority_High = priorityHighcheck,
+                Priority_Normal = priorityNormalcheck,
+                Priority_Low = priorityLowcheck,
+                Priority_All = priorityAllcheck,
                 TimeFilter = timeFilter,
                 SortPriority1 = sortPriority1,
                 ShowPriority = showPriority,
                 SortDeadline1 = sortDeadline1,
-                ShowDeadline = showDeadline
+                ShowDeadline = showDeadline,
+                FilterCheck = true
             };
             App.DAUtil.SaveFilter(filter);
-        Navigation.PushAsync(new HomePage());
+            Navigation.PushAsync(new HomePage());
         }
     }
 }
-
-//statusFilter,  priorityFilter,  timeFilter,  sortPriority1,  showPriority,  sortDeadline1, showDeadline

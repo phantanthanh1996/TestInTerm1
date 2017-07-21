@@ -201,7 +201,8 @@
                             <TapGestureRecognizer Tapped="sortPriority_OnTapped"></TapGestureRecognizer>
                         </Image.GestureRecognizers>
                     </Image>
-                    <Label Text="Priority"
+                    <Label VerticalOptions="Center"
+                        Text="Priority"
                        Margin="0,0,10,0"/>
                     <Picker x:Name="pioritySort"
                             
@@ -229,7 +230,8 @@
                             <TapGestureRecognizer Tapped="sortDeadline_OnTapped"></TapGestureRecognizer>
                         </Image.GestureRecognizers>
                     </Image>
-                    <Label Text="Deadline"
+                    <Label VerticalOptions="Center"
+                       Text="Deadline"
                        Margin="0,0,10,0"/>
                     <Picker x:Name="DeadlineSort"
                             

@@ -11,8 +11,14 @@ namespace TestInTerm
     {
         [PrimaryKey, AutoIncrement]
         public long FilterId { get; set; }
-        public int StatusFilter { get; set; }
+        public bool FilterCheck { get; set; }
+        public int StatusFilter { get; set; } //xet 
         public int PriorityFilter { get; set; }
+        public bool Priority_Cristical { get; set; }
+        public bool Priority_High { get; set; }
+        public bool Priority_Normal { get; set; }
+        public bool Priority_Low { get; set; }
+        public bool Priority_All { get; set; }
         public int TimeFilter { get; set; }
         public int SortPriority1 { get; set; }
         public int SortDeadline1 { get; set; }

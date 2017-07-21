@@ -43,6 +43,7 @@
     <Compile Include="Converter\CutStringConverter.cs" />
     <Compile Include="Converter\StringToColorConverter.cs" />
     <Compile Include="Enums\PriorityType.cs" />
+    <Compile Include="Helper\SetDateTime.cs" />
     <Compile Include="Interface\ISQLite.cs" />
     <Compile Include="Models\DataAccess.cs" />
     <Compile Include="Models\Filter.cs" />

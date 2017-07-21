@@ -39,7 +39,7 @@ namespace TestInTerm
                 }
                 else
                 {
-                    return Color.Blue;
+                    return Color.Green;
                 }
 
             }

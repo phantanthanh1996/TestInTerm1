@@ -7,7 +7,7 @@
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Blue" />
                 <Setter Property="Margin" Value="0,10"/>
-                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontSize" Value="15"/>
             </Style>
             <LayoutOptions x:Key="detail">
                 EndAndExpand
@@ -109,7 +109,6 @@
                         Grid.Row="6"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
-                        SelectedItem="{Binding Priority}"
                         TextColor="Blue"               
                         Title="Select Priority" 
                         HorizontalOptions="EndAndExpand">

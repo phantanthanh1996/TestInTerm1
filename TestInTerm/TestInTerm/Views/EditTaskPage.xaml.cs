@@ -21,27 +21,12 @@ namespace TestInTerm
             BindingContext = task1;
             timestart.Time = task1.TimeStart.TimeOfDay;
             timedead.Time = task1.Deadline.TimeOfDay;
+
+            PiorityPicker.SelectedItem = ((int)(task1.Priority)).ToString();
         }
 
         private void Save_Task(object sender, EventArgs e)
         {
-            PriorityType rs = PriorityType.Cristical;
-            if (PiorityPicker.SelectedItem.ToString() == "Cristical")
-            {
-                rs = PriorityType.Cristical;
-            }
-            else if (PiorityPicker.SelectedItem.ToString() == "High")
-            {
-                rs = PriorityType.High;
-            }
-            else if (PiorityPicker.SelectedItem.ToString() == "Normal")
-            {
-                rs = PriorityType.Normal;
-            }
-            if (PiorityPicker.SelectedItem.ToString() == "Low")
-            {
-                rs = PriorityType.Low;
-            }
             var stask = new Task()
             {
 
@@ -67,7 +52,7 @@ namespace TestInTerm
                 ),
 
                 Description = description.Text,
-                Priority = rs,
+                Priority = (PriorityType)Int32.Parse(PiorityPicker.SelectedItem.ToString()),
             };
             App.DAUtil.EditTask(stask);
             Navigation.PopAsync();

@@ -17,7 +17,7 @@
             <converters1:BoolToUrlConverter x:Key="BoolToUrlConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid>
+    <Grid Margin="0,0,10,0">
         <Image Source="bg1.jpg"
                Aspect="AspectFill"/>
         <StackLayout>
@@ -107,38 +107,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Picker Grid.Column="0"
-                    x:Name="Filter"           
-                    Title="Filter Type" 
-                    SelectedIndexChanged="FilterPicker_OnSelectedIndexChanged">
-                    <Picker.Items>
-                        <x:String>Priority this Date</x:String>
-                        <x:String>Priority this Week</x:String>
-                        <x:String>Priority this Month</x:String>
-                        <x:String>Status this Date</x:String>
-                        <x:String>Status this Week</x:String>
-                        <x:String>Status this Month</x:String>
-                    </Picker.Items>
-                </Picker>
-                <Picker Grid.Column="1"
-                    x:Name="Sort"           
-                    Title="Sort Type" 
-                    SelectedIndexChanged="SortPicker_OnSelectedIndexChanged">
-                    <Picker.Items>
-                        <x:String>Deadline A - Z</x:String>
-                        <x:String>Deadline Z - A</x:String>
-                        <x:String>Priority 1 - 4</x:String>
-                        <x:String>Priority 4 - 1</x:String>
-                        <x:String>Status Done - Open</x:String>
-                        <x:String>Status Open - Done</x:String>
-                    </Picker.Items>
-                </Picker>
-            </Grid>
+            
         </StackLayout>
     </Grid>
 </ContentPage>
