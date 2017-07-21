@@ -5,9 +5,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using SQLite.Net;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 
 namespace TestInTerm
 {
@@ -21,16 +22,78 @@ namespace TestInTerm
 
             var vList = App.DAUtil.GetAllTasks();
             lstTask.ItemsSource = vList;
-
+            SearchPicker.SelectedItem = "TaskName";
         }
+
+        //contructor
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            var vList = App.DAUtil.GetAllTasks();
-            lstTask.ItemsSource = vList;
+            var Filter = App.DAUtil.GetFilter();
+            if(Filter.FilterCheck == true)
+            {
+                var vList = App.DAUtil.FilterAndSort(Filter.StatusFilter, Filter.Priority_Cristical, Filter.Priority_High, Filter.Priority_Normal, Filter.Priority_Low, Filter.Priority_All, Filter.TimeFilter, Filter.SortPriority1, Filter.ShowPriority, Filter.SortDeadline1, Filter.ShowDeadline);
+                if (Filter.TimeFilter == 1)
+                {
+                    List<Task> vList1 = new List<Task>();
+                    foreach (var t in vList)
+                    {
+                        if(t.Deadline.Date == DateTime.Now.Date)
+                        {
+                            
+                            vList1.Add(t);
+                            
+                        }
+                    }
+                    lstTask.ItemsSource = vList1;
+                }else if (Filter.TimeFilter == 2)
+                {
+                    
+                    List<Task> vList1 = new List<Task>();
+                    foreach (var t in vList)
+                    {
+                        DateTime FirstDayOfWeek = SetDateTime.GetFisrtDayOfWeek(DateTime.Now);
+                        TimeSpan AddLastDayOfWeek = new TimeSpan(6, 0, 0, 0);
+                        DateTime LastDayOfWeek = FirstDayOfWeek.Add(AddLastDayOfWeek);
+                        if (t.Deadline.Date >= FirstDayOfWeek.Date && t.Deadline.Date <= LastDayOfWeek.Date)
+                        {
+
+                            vList1.Add(t);
+
+                        }
+                    }
+                    lstTask.ItemsSource = vList1;
+                } else if (Filter.TimeFilter == 3)
+                {
+                    List<Task> vList1 = new List<Task>();
+                    foreach (var t in vList)
+                    {
+                        if (t.Deadline.Date.Month == DateTime.Now.Date.Month)
+                        {
+
+                            vList1.Add(t);
+
+                        }
+                    }
+                    lstTask.ItemsSource = vList1;
+                } else
+                {
+                    lstTask.ItemsSource = vList;
+                }
+
+                Filter.FilterCheck = false;
+                App.DAUtil.EditFilter(Filter);
+
+            }
+            else
+            {
+                var vList = App.DAUtil.GetAllTasks();
+                lstTask.ItemsSource = vList;
+            }
 
         }
+        
         public async void Add_Task(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddTaskPage());
@@ -128,44 +191,7 @@ namespace TestInTerm
 
         }
 
-        private void SortPicker_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            string check = Sort.SelectedItem.ToString();
-            switch (check)
-            {
-                case "Deadline A - Z":
-                    Tasks = App.DAUtil.ArrangeListTask(1, "Deadline");
+        
 
-                    lstTask.ItemsSource = Tasks;
-
-                    break;
-                case "Deadline Z - A":
-                    Tasks = App.DAUtil.ArrangeListTask(0, "Deadline");
-
-                    lstTask.ItemsSource = Tasks;
-                    break;
-                case "Priority 1 - 4":
-                    Tasks = App.DAUtil.ArrangeListTask(1, "Priority");
-
-                    lstTask.ItemsSource = Tasks;
-                    break;
-                case "Priority 4 - 1":
-                    Tasks = App.DAUtil.ArrangeListTask(0, "Priority");
-
-                    lstTask.ItemsSource = Tasks;
-                    break;
-                case "Status Open - Done":
-                    Tasks = App.DAUtil.ArrangeListTask(1, "Status");
-
-                    lstTask.ItemsSource = Tasks;
-                    break;
-                case "Status Done - Open":
-                    Tasks = App.DAUtil.ArrangeListTask(0, "Status");
-
-                    lstTask.ItemsSource = Tasks;
-                    break;
-
-            }
-        }
     }
 }

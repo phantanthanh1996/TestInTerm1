@@ -14,3 +14,6 @@ namespace TestInTerm
         Cristical = 1
     }
 }
+//Luu vao List
+
+//for chay het mang nhung thang nao dc chon

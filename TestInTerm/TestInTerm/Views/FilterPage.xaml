@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestInTerm.FilterPage"
+             Title="Sort and Filter"
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="0,10"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+
+            <LayoutOptions x:Key="detail">
+                EndAndExpand
+            </LayoutOptions>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+
+        <StackLayout Margin="10,10"
+                 >
+            <Label Text="Filter" />
+            <StackLayout Margin="10,0">
+                <Label Text="Status"/>
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="statusDone"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="statusDone_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label
+                        Text="Done"
+                       Margin="0,0,10,0"/>
+                    <Image x:Name="statusUndone"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="statusUndone_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Undone"
+                       Margin="0,0,10,0"/>
+
+
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="statusAll"
+                       Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="statusAll_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="All"
+                       Margin="0,0,10,0"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="10,0">
+                <Label Text="Priority"/>
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="priorityCristical"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="priorityCristical_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Cristical"
+                       Margin="0,0,10,0"/>
+                    <Image x:Name="priorityHigh"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="priorityHigh_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Label Text="High"
+                       Margin="0,0,10,0"/>
+
+
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="priorityNormal"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="priorityNormal_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Normal"
+                       Margin="0,0,10,0"/>
+                    <Image x:Name="priorityLow"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="priorityLow_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Low"
+                       Margin="0,0,10,0"/>
+
+
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="priorityAll"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="priorityAll_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="All"
+                       Margin="0,0,10,0"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Margin="10,0">
+                <Label Text="Time"/>
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="timeToday"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="timeToday_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="Today"
+                       Margin="0,0,10,0"/>
+                    <Image x:Name="timeThisWeek"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="timeThisWeek_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="This Week"
+                       Margin="0,0,10,0"/>
+
+
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="timeThisMonth"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="timeThisMonth_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="This Month"
+                       Margin="0,0,10,0"/>
+                    <Image x:Name="timeAll"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="timeAll_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label Text="All"
+                       Margin="0,0,10,0"/>
+
+
+                </StackLayout>
+            </StackLayout>
+            <Label Text="Sort" />
+            <StackLayout Margin="10,0">
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="sortPriority"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="sortPriority_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label VerticalOptions="Center"
+                        Text="Priority"
+                       Margin="0,0,10,0"/>
+                    <Picker x:Name="pioritySort"
+                            
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"               
+                        Title="Select Priority" 
+                        HorizontalOptions="EndAndExpand">
+                        <Picker.Items>
+                            <x:String>Descrease</x:String>
+                            <x:String>Increase</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image x:Name="sortDeadline"
+                        Source="checkempty.png"
+                       HeightRequest="20"
+                       WidthRequest="20"
+                       >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="sortDeadline_OnTapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label VerticalOptions="Center"
+                       Text="Deadline"
+                       Margin="0,0,10,0"/>
+                    <Picker x:Name="DeadlineSort"
+                            
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        TextColor="Black"               
+                        Title="Select Priority" 
+                        HorizontalOptions="EndAndExpand">
+                        <Picker.Items>
+                            <x:String>Descrease</x:String>
+                            <x:String>Increase</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="Cancel_Filter"/>
+                <Button Text="OK"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="Ok_Filter"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

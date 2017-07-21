@@ -12,6 +12,18 @@ namespace TestInTerm
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : MasterDetailPage
     {
+        private static HomePage _instance;
+        public static HomePage Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new HomePage();
+                }
+                return _instance;
+            }
+        }
         public HomePage()
         {
             InitializeComponent();
@@ -37,12 +49,16 @@ namespace TestInTerm
             {
                 Detail = new NavigationPage(new ReportPage());
             }
+            else if (page.Title == "Filter")
+            {
+                Detail = new NavigationPage(new FilterPage());
+            }
             else if (page.Title == "Logout")
             {
                 bool accepted = await DisplayAlert("Confirm", "Are you sure to logout", "ok", "cancel");
                 if (accepted)
                 {
-                    Navigation.PushAsync(new LoginPage());
+                    await Navigation.PushAsync(new LoginPage());
 
                 }
             }

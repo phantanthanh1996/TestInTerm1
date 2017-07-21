@@ -36,7 +36,8 @@ namespace TestInTerm
                     new HomePageMenuItem { Id = 0, Title = "List Task", url = "list.png"},
                     new HomePageMenuItem { Id = 1, Title = "Report" , url = "report.png"},
                     new HomePageMenuItem { Id = 2, Title = "Profile" , url = "profile.png"},
-                    new HomePageMenuItem { Id = 3, Title = "Logout", url = "logout.png" },
+                     new HomePageMenuItem { Id = 3, Title = "Filter", url = "filter.png" },
+                    new HomePageMenuItem { Id = 4, Title = "Logout", url = "logout.png" },
                 });
             }
 

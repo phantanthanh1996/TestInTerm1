@@ -79,7 +79,7 @@ namespace TestInTerm
                     task.Deadline = task.Deadline.Add(aInterval);
                     task.TimeStart = task.TimeStart.Add(aInterval);
                     App.DAUtil.SaveTask(task);
-                    Navigation.PushAsync(new HomePage());
+                    Navigation.PopAsync();
                 }
 
             }

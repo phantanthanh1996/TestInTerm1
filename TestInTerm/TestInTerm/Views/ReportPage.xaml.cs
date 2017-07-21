@@ -48,21 +48,24 @@ namespace TestInTerm
                 if (t.Deadline.Date == DateTime.Now.Date)
                 {
 
-                    JobCriticalDone += App.DAUtil.CountY(4, true, t);
-                    JobHighDone += App.DAUtil.CountY(3, true, t);
-                    JobNormalDone += App.DAUtil.CountY(2, true, t);
-                    JobLowDone += App.DAUtil.CountY(1, true, t);
-                    JobCriticalInprogress += App.DAUtil.CountY(4, false, t);
-                    JobHighInprogress += App.DAUtil.CountY(3, false, t);
-                    JobNormalInprogress += App.DAUtil.CountY(2, false, t);
-                    JobLowInprogress += App.DAUtil.CountY(1, false, t);
+                    JobCriticalDone += App.DAUtil.CountY(1, true, t);
+                    JobHighDone += App.DAUtil.CountY(2, true, t);
+                    JobNormalDone += App.DAUtil.CountY(3, true, t);
+                    JobLowDone += App.DAUtil.CountY(4, true, t);
+                    JobCriticalInprogress += App.DAUtil.CountY(1, false, t);
+                    JobHighInprogress += App.DAUtil.CountY(2, false, t);
+                    JobNormalInprogress += App.DAUtil.CountY(3, false, t);
+                    JobLowInprogress += App.DAUtil.CountY(4, false, t);
                 }
             }
             JobCritical = JobCriticalDone + JobCriticalInprogress;
             JobHigh = JobHighDone + JobHighInprogress;
             JobNormal = JobNormalDone + JobNormalInprogress;
             JobLow = JobLowDone + JobLowInprogress;
-
+            CristicalTasks.Text = JobCritical.ToString();
+            HighTasks.Text = JobHigh.ToString();
+            NormalTasks.Text = JobNormal.ToString();
+            LowTasks.Text = JobLow.ToString();
             float B = JobCritical * 4 + JobHigh * 3 + JobNormal * 2 + JobLow * 1;
             float A = JobCriticalDone * 4 + JobHighDone * 3 + JobNormalDone * 2 + JobLowDone;
             if (B != 0)
@@ -100,20 +103,24 @@ namespace TestInTerm
                     if (t.Deadline.Date == DateTime.Now.Date)
                     {
 
-                        JobCriticalDone += App.DAUtil.CountY(4, true, t);
-                        JobHighDone += App.DAUtil.CountY(3, true, t);
-                        JobNormalDone += App.DAUtil.CountY(2, true, t);
-                        JobLowDone += App.DAUtil.CountY(1, true, t);
-                        JobCriticalInprogress += App.DAUtil.CountY(4, false, t);
-                        JobHighInprogress += App.DAUtil.CountY(3, false, t);
-                        JobNormalInprogress += App.DAUtil.CountY(2, false, t);
-                        JobLowInprogress += App.DAUtil.CountY(1, false, t);
+                        JobCriticalDone += App.DAUtil.CountY(1, true, t);
+                        JobHighDone += App.DAUtil.CountY(2, true, t);
+                        JobNormalDone += App.DAUtil.CountY(3, true, t);
+                        JobLowDone += App.DAUtil.CountY(4, true, t);
+                        JobCriticalInprogress += App.DAUtil.CountY(1, false, t);
+                        JobHighInprogress += App.DAUtil.CountY(2, false, t);
+                        JobNormalInprogress += App.DAUtil.CountY(3, false, t);
+                        JobLowInprogress += App.DAUtil.CountY(4, false, t);
                     }
                 }
                 JobCritical = JobCriticalDone + JobCriticalInprogress;
                 JobHigh = JobHighDone + JobHighInprogress;
                 JobNormal = JobNormalDone + JobNormalInprogress;
                 JobLow = JobLowDone + JobLowInprogress;
+                CristicalTasks.Text = JobCritical.ToString();
+                HighTasks.Text = JobHigh.ToString();
+                NormalTasks.Text = JobNormal.ToString();
+                LowTasks.Text = JobLow.ToString();
 
                 float B = JobCritical * 4 + JobHigh * 3 + JobNormal * 2 + JobLow * 1;
                 float A = JobCriticalDone * 4 + JobHighDone * 3 + JobNormalDone * 2 + JobLowDone;
@@ -146,23 +153,29 @@ namespace TestInTerm
                 float JobLow;
                 foreach (var t in Tasks)
                 {
-                    if (t.Deadline.Date.Day <= DateTime.Now.Date.Day && t.Deadline.Date.Day >= (DateTime.Now.Date.Day - 7))
+                    DateTime FirstDayOfWeek = SetDateTime.GetFisrtDayOfWeek(DateTime.Now);
+                    TimeSpan AddLastDayOfWeek = new TimeSpan(6, 0, 0, 0);
+                    DateTime LastDayOfWeek = FirstDayOfWeek.Add(AddLastDayOfWeek);
+                    if (t.Deadline.Date >= FirstDayOfWeek.Date && t.Deadline.Date <= LastDayOfWeek.Date)
                     {
-                        JobCriticalDone += App.DAUtil.CountY(4, true, t);
-                        JobHighDone += App.DAUtil.CountY(3, true, t);
-                        JobNormalDone += App.DAUtil.CountY(2, true, t);
-                        JobLowDone += App.DAUtil.CountY(1, true, t);
-                        JobCriticalInprogress += App.DAUtil.CountY(4, false, t);
-                        JobHighInprogress += App.DAUtil.CountY(3, false, t);
-                        JobNormalInprogress += App.DAUtil.CountY(2, false, t);
-                        JobLowInprogress += App.DAUtil.CountY(1, false, t);
+                        JobCriticalDone += App.DAUtil.CountY(1, true, t);
+                        JobHighDone += App.DAUtil.CountY(2, true, t);
+                        JobNormalDone += App.DAUtil.CountY(3, true, t);
+                        JobLowDone += App.DAUtil.CountY(4, true, t);
+                        JobCriticalInprogress += App.DAUtil.CountY(1, false, t);
+                        JobHighInprogress += App.DAUtil.CountY(2, false, t);
+                        JobNormalInprogress += App.DAUtil.CountY(3, false, t);
+                        JobLowInprogress += App.DAUtil.CountY(4, false, t);
                     }
                 }
                 JobCritical = JobCriticalDone + JobCriticalInprogress;
                 JobHigh = JobHighDone + JobHighInprogress;
                 JobNormal = JobNormalDone + JobNormalInprogress;
                 JobLow = JobLowDone + JobLowInprogress;
-
+                CristicalTasks.Text = JobCritical.ToString();
+                HighTasks.Text = JobHigh.ToString();
+                NormalTasks.Text = JobNormal.ToString();
+                LowTasks.Text = JobLow.ToString();
                 float B = JobCritical * 4 + JobHigh * 3 + JobNormal * 2 + JobLow * 1;
                 float A = JobCriticalDone * 4 + JobHighDone * 3 + JobNormalDone * 2 + JobLowDone;
                 if (B != 0)
@@ -196,21 +209,24 @@ namespace TestInTerm
                 {
                     if (t.Deadline.Date.Month == DateTime.Now.Date.Month)
                     {
-                        JobCriticalDone += App.DAUtil.CountY(4, true, t);
-                        JobHighDone += App.DAUtil.CountY(3, true, t);
-                        JobNormalDone += App.DAUtil.CountY(2, true, t);
-                        JobLowDone += App.DAUtil.CountY(1, true, t);
-                        JobCriticalInprogress += App.DAUtil.CountY(4, false, t);
-                        JobHighInprogress += App.DAUtil.CountY(3, false, t);
-                        JobNormalInprogress += App.DAUtil.CountY(2, false, t);
-                        JobLowInprogress += App.DAUtil.CountY(1, false, t);
+                        JobCriticalDone += App.DAUtil.CountY(1, true, t);
+                        JobHighDone += App.DAUtil.CountY(2, true, t);
+                        JobNormalDone += App.DAUtil.CountY(3, true, t);
+                        JobLowDone += App.DAUtil.CountY(4, true, t);
+                        JobCriticalInprogress += App.DAUtil.CountY(1, false, t);
+                        JobHighInprogress += App.DAUtil.CountY(2, false, t);
+                        JobNormalInprogress += App.DAUtil.CountY(3, false, t);
+                        JobLowInprogress += App.DAUtil.CountY(4, false, t);
                     }
                 }
                 JobCritical = JobCriticalDone + JobCriticalInprogress;
                 JobHigh = JobHighDone + JobHighInprogress;
                 JobNormal = JobNormalDone + JobNormalInprogress;
                 JobLow = JobLowDone + JobLowInprogress;
-
+                CristicalTasks.Text = JobCritical.ToString();
+                HighTasks.Text = JobHigh.ToString();
+                NormalTasks.Text = JobNormal.ToString();
+                LowTasks.Text = JobLow.ToString();
                 float B = JobCritical * 4 + JobHigh * 3 + JobNormal * 2 + JobLow * 1;
                 float A = JobCriticalDone * 4 + JobHighDone * 3 + JobNormalDone * 2 + JobLowDone;
                 if (B != 0)

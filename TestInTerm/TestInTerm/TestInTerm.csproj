@@ -43,8 +43,10 @@
     <Compile Include="Converter\CutStringConverter.cs" />
     <Compile Include="Converter\StringToColorConverter.cs" />
     <Compile Include="Enums\PriorityType.cs" />
+    <Compile Include="Helper\SetDateTime.cs" />
     <Compile Include="Interface\ISQLite.cs" />
     <Compile Include="Models\DataAccess.cs" />
+    <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\HomePageMenuItem.cs" />
     <Compile Include="Models\PieChartModel.cs" />
     <Compile Include="Models\Task.cs" />
@@ -58,6 +60,9 @@
     </Compile>
     <Compile Include="Views\EditTaskPage.xaml.cs">
       <DependentUpon>EditTaskPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FilterPage.xaml.cs">
+      <DependentUpon>FilterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -163,6 +168,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\SignupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\FilterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
