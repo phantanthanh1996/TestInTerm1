@@ -27,11 +27,8 @@ namespace TestInTerm
 
         private void Save_Task(object sender, EventArgs e)
         {
-            var stask = new Task()
-            {
-
-                TaskName = taskname.Text,
-                Deadline = new DateTime
+            task1.TaskName = taskname.Text;
+                task1.Deadline = new DateTime
                 (
                     datedead.Date.Year,
                     datedead.Date.Month,
@@ -39,22 +36,21 @@ namespace TestInTerm
                     timedead.Time.Hours,
                     timedead.Time.Minutes,
                     timedead.Time.Seconds
-                ),
-                DesShort = desshort.Text,
-                TimeStart = new DateTime
-                (
-                    datestart.Date.Year,
-                    datestart.Date.Month,
-                    datestart.Date.Day,
-                    timestart.Time.Hours,
-                    timestart.Time.Minutes,
-                    timestart.Time.Seconds
-                ),
+                );
+            task1.DesShort = desshort.Text;
+            task1.TimeStart = new DateTime
+           (
+               datestart.Date.Year,
+               datestart.Date.Month,
+               datestart.Date.Day,
+               timestart.Time.Hours,
+               timestart.Time.Minutes,
+               timestart.Time.Seconds
+           );
 
-                Description = description.Text,
-                Priority = (PriorityType)Int32.Parse(PiorityPicker.SelectedItem.ToString()),
-            };
-            App.DAUtil.EditTask(stask);
+            task1.Description = description.Text;
+            task1.Priority = (PriorityType)Int32.Parse(PiorityPicker.SelectedItem.ToString());
+            App.DAUtil.EditTask(task1);
             Navigation.PopAsync();
         }
 

@@ -6,6 +6,7 @@ namespace TestInTerm
     public partial class DetailTaskPage : ContentPage
     {
         Task task1;
+
         public DetailTaskPage(Task t)
         {
 
@@ -25,7 +26,15 @@ namespace TestInTerm
                 status.Text = "Open";
             }
         }
-        public void Edit_Task(object sender, EventArgs e)
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Task x = App.DAUtil.GetTasks(task1.TaskId);
+            this.Title = x.TaskName;
+            BindingContext = x;
+
+        }
+            public void Edit_Task(object sender, EventArgs e)
         {
             Navigation.PushAsync(new EditTaskPage(task1));
         }

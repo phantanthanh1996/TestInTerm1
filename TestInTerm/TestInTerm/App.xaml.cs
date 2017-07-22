@@ -14,7 +14,7 @@ namespace TestInTerm
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new HomePage());
+            MainPage = new NavigationPage(new LoginPage());
         }
         public static DataAccess DAUtil
         {

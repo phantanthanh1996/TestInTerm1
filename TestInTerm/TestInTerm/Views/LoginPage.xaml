@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TestInTerm.LoginPage">
+             x:Class="TestInTerm.LoginPage"
+              xmlns:local="clr-namespace:TestInTerm">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -44,24 +45,28 @@
                 <Label Text="your username and password."/>
                 <BoxView Color="White" HeightRequest="3" Margin="20,0,20,30" WidthRequest="50" HorizontalOptions="Start" />
 
-                <Entry Placeholder="Username" Style="{StaticResource LoginPage}" />
-                <Entry Placeholder="Password" Style="{StaticResource LoginPage}" />
+                <local:MyEntry Placeholder="Username" Style="{StaticResource LoginPage}" />
+                <local:MyEntry Placeholder="Password" Style="{StaticResource LoginPage}" />
 
                 <Button VerticalOptions="EndAndExpand" 
                         Text="Login" Style="{StaticResource btnSignUp}"
                         Clicked="Move_HomePage"/>
                 <StackLayout Orientation="Horizontal" 
-                             Margin="5,0,5,20">
-                    <Label Text="Forgot password?">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Move_ForgotPass"  NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label Text="New here? Sign up" HorizontalOptions="EndAndExpand">
-                        <Label.GestureRecognizers>
+                             Margin="20,0,20,20">
+                    <local:UnderlineLabel Text="Forgot password?"
+                                          TextColor="White">
+                        <local:UnderlineLabel.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Move_ForgotPass"
+                                                  NumberOfTapsRequired="1" />
+                        </local:UnderlineLabel.GestureRecognizers>
+                    </local:UnderlineLabel>
+                    <local:UnderlineLabel Text="New here? Sign up" 
+                                          HorizontalOptions="EndAndExpand"
+                                          TextColor="White">
+                        <local:UnderlineLabel.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Move_SignUp" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                        </local:UnderlineLabel.GestureRecognizers>
+                    </local:UnderlineLabel>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

@@ -28,6 +28,12 @@ namespace TestInTerm
         {
             return dbConn.Query<Task>("Select * From [Task] order by Priority asc");
         }
+        public Task GetTasks(long id)
+        {
+
+            Task task = dbConn.Get<Task>(id);
+            return task;
+        }
         public List<Filter> GetAllFilter()
         {
             return dbConn.Query<Filter>("Select * From [Filter]");

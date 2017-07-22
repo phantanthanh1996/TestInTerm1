@@ -42,6 +42,8 @@
     <Compile Include="Converter\BoolToUrlConverter.cs" />
     <Compile Include="Converter\CutStringConverter.cs" />
     <Compile Include="Converter\StringToColorConverter.cs" />
+    <Compile Include="CustomRenderer\MyEntry.cs" />
+    <Compile Include="CustomRenderer\UnderlineLabel.cs" />
     <Compile Include="Enums\PriorityType.cs" />
     <Compile Include="Helper\SetDateTime.cs" />
     <Compile Include="Interface\ISQLite.cs" />
