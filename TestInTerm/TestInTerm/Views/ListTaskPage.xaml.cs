@@ -29,62 +29,72 @@ namespace TestInTerm
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            var Filter = App.DAUtil.GetFilter();
-            if(Filter.FilterCheck == true)
+            if (App.DAUtil.GetFilter() != null)
             {
-                var vList = App.DAUtil.FilterAndSort(Filter.StatusFilter, Filter.Priority_Cristical, Filter.Priority_High, Filter.Priority_Normal, Filter.Priority_Low, Filter.Priority_All, Filter.TimeFilter, Filter.SortPriority1, Filter.ShowPriority, Filter.SortDeadline1, Filter.ShowDeadline);
-                if (Filter.TimeFilter == 1)
+                var Filter = App.DAUtil.GetFilter();
+                if (Filter.FilterCheck == true)
                 {
-                    List<Task> vList1 = new List<Task>();
-                    foreach (var t in vList)
+                    var vList = App.DAUtil.FilterAndSort(Filter.StatusFilter, Filter.Priority_Cristical, Filter.Priority_High, Filter.Priority_Normal, Filter.Priority_Low, Filter.Priority_All, Filter.TimeFilter, Filter.SortPriority1, Filter.ShowPriority, Filter.SortDeadline1, Filter.ShowDeadline);
+                    if (Filter.TimeFilter == 1)
                     {
-                        if(t.Deadline.Date == DateTime.Now.Date)
+                        List<Task> vList1 = new List<Task>();
+                        foreach (var t in vList)
                         {
-                            
-                            vList1.Add(t);
-                            
+                            if (t.Deadline.Date == DateTime.Now.Date)
+                            {
+
+                                vList1.Add(t);
+
+                            }
                         }
+                        lstTask.ItemsSource = vList1;
                     }
-                    lstTask.ItemsSource = vList1;
-                }else if (Filter.TimeFilter == 2)
-                {
-                    
-                    List<Task> vList1 = new List<Task>();
-                    foreach (var t in vList)
+                    else if (Filter.TimeFilter == 2)
                     {
-                        DateTime FirstDayOfWeek = SetDateTime.GetFisrtDayOfWeek(DateTime.Now);
-                        TimeSpan AddLastDayOfWeek = new TimeSpan(6, 0, 0, 0);
-                        DateTime LastDayOfWeek = FirstDayOfWeek.Add(AddLastDayOfWeek);
-                        if (t.Deadline.Date >= FirstDayOfWeek.Date && t.Deadline.Date <= LastDayOfWeek.Date)
+
+                        List<Task> vList1 = new List<Task>();
+                        foreach (var t in vList)
                         {
+                            DateTime FirstDayOfWeek = SetDateTime.GetFisrtDayOfWeek(DateTime.Now);
+                            TimeSpan AddLastDayOfWeek = new TimeSpan(6, 0, 0, 0);
+                            DateTime LastDayOfWeek = FirstDayOfWeek.Add(AddLastDayOfWeek);
+                            if (t.Deadline.Date >= FirstDayOfWeek.Date && t.Deadline.Date <= LastDayOfWeek.Date)
+                            {
 
-                            vList1.Add(t);
+                                vList1.Add(t);
 
+                            }
                         }
+                        lstTask.ItemsSource = vList1;
                     }
-                    lstTask.ItemsSource = vList1;
-                } else if (Filter.TimeFilter == 3)
-                {
-                    List<Task> vList1 = new List<Task>();
-                    foreach (var t in vList)
+                    else if (Filter.TimeFilter == 3)
                     {
-                        if (t.Deadline.Date.Month == DateTime.Now.Date.Month)
+                        List<Task> vList1 = new List<Task>();
+                        foreach (var t in vList)
                         {
+                            if (t.Deadline.Date.Month == DateTime.Now.Date.Month)
+                            {
 
-                            vList1.Add(t);
+                                vList1.Add(t);
 
+                            }
                         }
+                        lstTask.ItemsSource = vList1;
                     }
-                    lstTask.ItemsSource = vList1;
-                } else
+                    else
+                    {
+                        lstTask.ItemsSource = vList;
+                    }
+
+                    Filter.FilterCheck = false;
+                    App.DAUtil.EditFilter(Filter);
+
+                }
+                else
                 {
+                    var vList = App.DAUtil.GetAllTasks();
                     lstTask.ItemsSource = vList;
                 }
-
-                Filter.FilterCheck = false;
-                App.DAUtil.EditFilter(Filter);
-
             }
             else
             {
@@ -119,8 +129,9 @@ namespace TestInTerm
             if (accepted)
             {
                 App.DAUtil.DeleteTask(sTask);
+                await Navigation.PushAsync(new HomePage());
             }
-            await Navigation.PushAsync(new ListTaskPage());
+            
         }
 
         public async void LstTask_OnItemTapped(object sender, ItemTappedEventArgs e)

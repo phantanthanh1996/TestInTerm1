@@ -10,7 +10,12 @@
                 <Setter Property="Margin" Value="0,10"/>
                 <Setter Property="FontSize" Value="15"/>
             </Style>
-
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
             <LayoutOptions x:Key="detail">
                 EndAndExpand
             </LayoutOptions>

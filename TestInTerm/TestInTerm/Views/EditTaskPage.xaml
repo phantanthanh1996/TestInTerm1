@@ -5,8 +5,14 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="Blue" />
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="Margin" Value="0,10"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style TargetType="Editor">
                 <Setter Property="FontSize" Value="15"/>
             </Style>
             <LayoutOptions x:Key="detail">
@@ -45,6 +51,7 @@
                 <Entry  Grid.Row="0"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
+                        TextColor="Blue"
                         x:Name="taskname" 
                         Text="{Binding TaskName}"
                         HorizontalOptions="FillAndExpand"/>
@@ -61,8 +68,9 @@
                 <TimePicker  Grid.Row="1"
                              Grid.Column="2"
                              x:Name="timestart" 
-                             TextColor="Blue" 
-                             HorizontalOptions="{StaticResource detail}"/>
+                             TextColor="Blue"
+                             HorizontalOptions="Start"
+                             />
 
                 <Label  Grid.Row="2"
                         Grid.Column="0"
@@ -71,13 +79,13 @@
                             Grid.Column="1"
                             Date="{Binding Deadline}"
                             HorizontalOptions="{StaticResource detail}"
-                            x:Name="datedead" 
+                            x:Name="datedead"
                             TextColor="Blue" />
                 <TimePicker Grid.Row="2"
                             Grid.Column="2"
                             x:Name="timedead" 
                             TextColor="Blue"
-                            HorizontalOptions="{StaticResource detail}"/>
+                            HorizontalOptions="Start"/>
 
 
                 <Label Grid.Row="3"
@@ -86,6 +94,7 @@
                 <Entry Grid.Row="3"
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
+                       TextColor="Blue"
                        x:Name="desshort" 
                        Text="{Binding DesShort}"
                        HorizontalOptions="FillAndExpand"/>
@@ -97,9 +106,9 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
                         x:Name="description" 
-                        TextColor="Blue"
                         Text="{Binding Description}"
                         HeightRequest="60"
+                        TextColor="Blue"
                         HorizontalOptions="FillAndExpand">
                 </Editor>
                 <Label Grid.Row="6"
@@ -108,10 +117,12 @@
                 <Picker x:Name="PiorityPicker"
                         Grid.Row="6"
                         Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        TextColor="Blue"               
+                        Grid.ColumnSpan="2"              
                         Title="Select Priority" 
-                        HorizontalOptions="EndAndExpand">
+                        HorizontalOptions="End"
+                        WidthRequest="30"
+                        TextColor="Blue"
+                        >
                     <Picker.Items>
                         <x:String>1</x:String>
                         <x:String>2</x:String>
@@ -119,11 +130,6 @@
                         <x:String>4</x:String>
                     </Picker.Items>
                 </Picker>
-
-
-
-
-
             </Grid>
         </ScrollView>
     </Grid>

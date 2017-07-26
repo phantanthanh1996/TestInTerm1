@@ -2,14 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestInTerm.FilterPage"
+             xmlns:local="clr-namespace:TestInTerm"
              Title="Sort and Filter"
              BackgroundColor="White">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="Black" />
-                <Setter Property="Margin" Value="0,10"/>
-                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Margin" Value="0,5" />
+                <Setter Property="FontSize" Value="15"/>
             </Style>
 
             <LayoutOptions x:Key="detail">
@@ -19,10 +20,9 @@
     </ContentPage.Resources>
     <ScrollView>
 
-        <StackLayout Margin="10,10"
-                 >
+        <StackLayout Margin="10,0">
             <Label Text="Filter" />
-            <StackLayout Margin="10,0">
+            <StackLayout Margin="10,0,0,0">
                 <Label Text="Status"/>
                 <StackLayout Orientation="Horizontal">
                     <Image x:Name="statusDone"
@@ -224,8 +224,7 @@
                     <Image x:Name="sortDeadline"
                         Source="checkempty.png"
                        HeightRequest="20"
-                       WidthRequest="20"
-                       >
+                       WidthRequest="20">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Tapped="sortDeadline_OnTapped"></TapGestureRecognizer>
                         </Image.GestureRecognizers>
@@ -250,13 +249,17 @@
 
                 </StackLayout>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel"
+            <StackLayout Orientation="Horizontal" 
+                         VerticalOptions="EndAndExpand"
+                         Margin="0,0,0,10">
+                <local:customButton Text="Cancel"
                         HorizontalOptions="FillAndExpand"
+                                    
                         Clicked="Cancel_Filter"/>
-                <Button Text="OK"
-                        HorizontalOptions="FillAndExpand"
-                        Clicked="Ok_Filter"/>
+                <local:customButton Text="OK"
+                                    BackgroundColor="Aqua"
+                                    HorizontalOptions="FillAndExpand"
+                                    Clicked="Ok_Filter"/>
             </StackLayout>
         </StackLayout>
     </ScrollView>

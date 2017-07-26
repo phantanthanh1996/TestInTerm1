@@ -20,7 +20,6 @@ namespace TestInTerm
         public DateTime Deadline { get; set; }
         public bool Status { get; set; }
         public PriorityType Priority { get; set; }
-
         public string TimeDeadline => Deadline.Subtract(TimeStart).ToString();
 
 

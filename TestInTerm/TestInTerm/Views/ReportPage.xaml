@@ -6,11 +6,21 @@
              x:Class="TestInTerm.ReportPage"
              Title="Report"
              BackgroundColor="White">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="Margin" Value="0,5" />
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <!--<Grid>
             <Image Source="bg1.jpg"
                    Aspect="AspectFill"/>-->
-            <StackLayout>
+            <StackLayout Margin="10,10">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Number of Tasks done: " />
                     <Label x:Name="NumTaskDone"

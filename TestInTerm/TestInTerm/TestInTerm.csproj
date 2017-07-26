@@ -42,6 +42,8 @@
     <Compile Include="Converter\BoolToUrlConverter.cs" />
     <Compile Include="Converter\CutStringConverter.cs" />
     <Compile Include="Converter\StringToColorConverter.cs" />
+    <Compile Include="CustomRenderer\customBoxView.cs" />
+    <Compile Include="CustomRenderer\customButton.cs" />
     <Compile Include="CustomRenderer\MyEntry.cs" />
     <Compile Include="CustomRenderer\UnderlineLabel.cs" />
     <Compile Include="Enums\PriorityType.cs" />

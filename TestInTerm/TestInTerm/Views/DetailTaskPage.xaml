@@ -7,9 +7,15 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
-                <Setter Property="TextColor" Value="Blue" />
+                <Setter Property="TextColor" Value="Black" />
                 <Setter Property="Margin" Value="0,10" />
                 <Setter Property="FontSize" Value="15" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="FontSize" Value="15"/>
             </Style>
             <LayoutOptions x:Key="detail">
                 EndAndExpand
@@ -35,11 +41,11 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="5*" />
                 </Grid.RowDefinitions>
 
@@ -59,7 +65,7 @@
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
                        x:Name="timestart"
-                       TextColor="Blue"
+                       TextColor="Black"
                        HorizontalOptions="{StaticResource detail}" />
                 <Label Grid.Row="2"
                        Grid.Column="0"
@@ -68,7 +74,7 @@
                        Grid.Column="1"
                        Grid.ColumnSpan="2"
                        x:Name="deadline"
-                       TextColor="Blue"
+                       TextColor="Black"
 
                        HorizontalOptions="{StaticResource detail}" />
 
@@ -76,12 +82,16 @@
                 <Label Grid.Row="3"
                        Grid.Column="0"
                        Text="Des-Short: " />
-                <Label Grid.Row="3"
+                <StackLayout Grid.Row="3"
                        Grid.Column="1"
-                       Grid.ColumnSpan="2"
-                       x:Name="desshort"
+                       Grid.ColumnSpan="2">
+                    <Label
+                    x:Name="desshort"
                        Text="{Binding DesShort}"
-                       HorizontalOptions="{StaticResource detail}" />
+                        HorizontalOptions="End"
+                        />
+                </StackLayout>
+                      
 
                 <Label Grid.Row="4"
                        Grid.Column="0"
@@ -91,7 +101,7 @@
                        Grid.ColumnSpan="3"
                        Text="{Binding Description}"
                        x:Name="description"
-                       TextColor="Blue"
+                       TextColor="Black"
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="Center">
                 </Label>
@@ -125,7 +135,6 @@
                        Source="{Binding Status, Converter= {StaticResource BoolToUrlConverter}}"
                        VerticalOptions="StartAndExpand"
                        HorizontalOptions="EndAndExpand"
-                       Margin="10,10"
                        Grid.Row="7"
                        Grid.Column="2"
                 >

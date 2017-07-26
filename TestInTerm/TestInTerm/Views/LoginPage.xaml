@@ -48,11 +48,12 @@
                 <local:MyEntry Placeholder="Username" Style="{StaticResource LoginPage}" />
                 <local:MyEntry Placeholder="Password" Style="{StaticResource LoginPage}" />
 
-                <Button VerticalOptions="EndAndExpand" 
+                <local:customButton VerticalOptions="EndAndExpand" 
+                                    Margin="20,0,20,0"
                         Text="Login" Style="{StaticResource btnSignUp}"
                         Clicked="Move_HomePage"/>
                 <StackLayout Orientation="Horizontal" 
-                             Margin="20,0,20,20">
+                             Margin="40,0,40,10">
                     <local:UnderlineLabel Text="Forgot password?"
                                           TextColor="White">
                         <local:UnderlineLabel.GestureRecognizers>

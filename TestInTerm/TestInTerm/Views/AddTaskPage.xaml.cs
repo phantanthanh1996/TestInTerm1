@@ -12,6 +12,7 @@ namespace TestInTerm
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddTaskPage : ContentPage
     {
+
         public AddTaskPage()
         {
             InitializeComponent();
@@ -20,10 +21,10 @@ namespace TestInTerm
             timedead.Time = DateTime.Now.TimeOfDay;
             timestart.Time = DateTime.Now.TimeOfDay;
             datedead.Date = DateTime.Now.Date;
-
+            
 
         }
-
+        ///
         public void Save_Task(object sender, EventArgs e)
         {
 
@@ -39,6 +40,7 @@ namespace TestInTerm
                 timestart.Time.Hours,
                 timestart.Time.Minutes,
                 0);
+            
             if (taskname.Text != null && desshort.Text != null && description.Text != null && PiorityPicker.SelectedItem != null)
             {
                 if (aDateTime <= bDateTime)

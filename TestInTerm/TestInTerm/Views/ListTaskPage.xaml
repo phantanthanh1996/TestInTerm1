@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestInTerm.ListTaskPage"
              Title="List Task"
+             xmlns:local="clr-namespace:TestInTerm"
              xmlns:converters="clr-namespace:TestInTerm"
              xmlns:converters1="clr-namespace:TestInTerm">
     <ContentPage.ToolbarItems>
@@ -17,7 +17,7 @@
             <converters1:BoolToUrlConverter x:Key="BoolToUrlConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid Margin="0,0,10,0">
+    <Grid Margin="0,0,0,0">
         <Image Source="bg1.jpg"
                Aspect="AspectFill"/>
         <StackLayout>
@@ -26,13 +26,22 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+                <local:customBoxView 
+                    Margin="10,5,0,5"
+                    Grid.Column="0"/>
+                <local:customBoxView
+                    Grid.Column="1"
+                    Margin="-5,5,10,5"/>
                 <SearchBar Grid.Column="0"
                        x:Name="Search" 
                        Placeholder="Search task"
                        TextChanged="Search_TaskName"/>
                 <Picker Grid.Column="1"
-                    x:Name="SearchPicker"           
-                    Title="Search Type ">
+                    
+                    x:Name="SearchPicker" 
+                    Margin="5,0,20,0"    
+                    Title="Search Type "
+                    >
                     <Picker.Items>
                         <x:String>TaskName</x:String>
                         <x:String>Des-Short</x:String>
@@ -45,58 +54,64 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell >
-                            <StackLayout Orientation="Horizontal" BackgroundColor="Aqua" Margin="10,10">
+                            <Grid Margin="10,5">
+                                <local:customBoxView/>
+                                <StackLayout Orientation="Horizontal">
 
-                                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical" Margin="5,5"
-                                         Padding="5,5,5,5">
-                                    <Label Text="{Binding TaskName}" FontSize="Medium" />
-                                    <Label Text="{Binding DesShort}" FontSize="Medium" />
+                                    <StackLayout HorizontalOptions="FillAndExpand"
+                                                 Orientation="Vertical" Margin="5,5"
+                                                 VerticalOptions="StartAndExpand"
+                                         Padding="5,0,5,0">
+                                        <Label Text="{Binding TaskName}" FontSize="Medium" />
+                                        <Label Text="{Binding DesShort}" FontSize="Small" />
 
-                                    <StackLayout VerticalOptions="EndAndExpand"
+                                        <StackLayout  VerticalOptions="EndAndExpand"
                                              Orientation="Horizontal">
-                                        <Label Text="Time Deadline: " 
-                                           FontSize="Medium"/>
-                                        <Label Text="{Binding TimeDeadline}" 
-                                           FontSize="Medium" />
+                                            <Label Text="Time Deadline: " 
+                                           FontSize="Small"/>
+                                            <Label Text="{Binding TimeDeadline}" 
+                                           FontSize="Small" />
+                                        </StackLayout>
+
+
+                                    </StackLayout>
+                                    <StackLayout Margin="5,10,5,0">
+                                        <!--Hien thi chu cai dau-->
+                                        <Grid>
+                                            <BoxView
+                                                Color="{Binding Priority, Converter= {StaticResource StringToColorConverter}}"
+                                                WidthRequest="30"
+                                                HeightRequest="30"
+                                                VerticalOptions="Start"
+                                                HorizontalOptions="Center">
+                                            </BoxView>
+                                            <Label Text="{Binding Priority, Converter= {StaticResource CutStringConverter}}"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   FontSize="15"/>
+
+
+                                        </Grid>
+                                        <Image x:Name="statuschange"
+                                               Source="{Binding Status, Converter= {StaticResource BoolToUrlConverter}}"
+                                               HorizontalOptions="End"
+                                               VerticalOptions="EndAndExpand"
+                                               HeightRequest="30"
+                                               WidthRequest="30"
+                                               Margin="10,10" > 
+
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
                                     </StackLayout>
 
 
                                 </StackLayout>
-                                <StackLayout>
-                                    <!--Hien thi chu cai dau-->
-                                    <Grid>
-                                        <BoxView
-                                        Margin="10,10"
-                                        Color="{Binding Priority, Converter= {StaticResource StringToColorConverter}}"
-                                        WidthRequest="50"
-                                        HeightRequest="50"
-                                        VerticalOptions="Start">
-                                        </BoxView>
-                                        <Label Text="{Binding Priority, Converter= {StaticResource CutStringConverter}}"
-                                           HorizontalOptions="Center"
-                                           VerticalOptions="Center"
-                                           FontSize="20"/>
 
 
-                                    </Grid>
-                                    <Image x:Name="statuschange"
-                                       Source="{Binding Status, Converter= {StaticResource BoolToUrlConverter}}"
-                                       HorizontalOptions="End"
-                                       VerticalOptions="End"
-                                       HeightRequest="50"
-                                       WidthRequest="50"
-                                       Margin="10,10" >
-
-                                        <Image.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"></TapGestureRecognizer>
-                                        </Image.GestureRecognizers>
-                                    </Image>
-
-                                </StackLayout>
-
-
-                            </StackLayout>
-
+                            </Grid>
                             <ViewCell.ContextActions>
                                 <MenuItem Icon="edit.png"
                                       Clicked="Edit_Task" />
@@ -107,7 +122,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            
+
         </StackLayout>
     </Grid>
 </ContentPage>

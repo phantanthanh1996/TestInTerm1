@@ -29,9 +29,14 @@ namespace TestInTerm
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            Task x = App.DAUtil.GetTasks(task1.TaskId);
-            this.Title = x.TaskName;
-            BindingContext = x;
+            
+            if(App.DAUtil.GetTasks(task1.TaskId) != null)
+            {
+                Task x = App.DAUtil.GetTasks(task1.TaskId);
+                this.Title = x.TaskName;
+                BindingContext = x;
+            }
+
 
         }
             public void Edit_Task(object sender, EventArgs e)
@@ -45,8 +50,9 @@ namespace TestInTerm
             if (accepted)
             {
                 App.DAUtil.DeleteTask(task1);
+                await Navigation.PushAsync(new HomePage());
             }
-            await Navigation.PushAsync(new ListTaskPage());
+            
         }
 
         private void Save_Status(object sender, ToggledEventArgs e)
